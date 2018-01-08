@@ -1,6 +1,7 @@
 #ifndef _POOLH_
 #include"pool.h"
 #endif
+#define BIRDPOS 2
 void CPool::Initialize(int xSize, int zSize, float OscillatorDistance, float OscillatorWeight, float Damping, float TextureStretchX, float TextureStretchZ)
 {
 	//assign member variables
@@ -278,7 +279,7 @@ void CDrop::GetNewPosition(SF3dVector * PositionVertex, float dtime, CPool * pPo
 		PositionVertex->x = Position.x;
 		PositionVertex->y = Position.y;
 		PositionVertex->z = Position.z;
-		if (Position.y < 0.0)
+		if (Position.y < -BIRDPOS)
 		{
 			/*the drop has fallen into the water. The problem is now, that we cannot
 			set time to 0.0, because if there are more "DropsPerRay" than "TimeNeeded" (See InitFountain())
@@ -341,7 +342,7 @@ void CAirFountain::Initialize(GLint Steps, GLint RaysPerStep, GLint DropsPerRay,
 				NewSpeed.y = sin(StepAngle * PI / 180.0) * (0.2 + 0.04*k);
 				//This is the speed caused by the ray:
 
-				RayAngle = (GLfloat)j / (GLfloat)RaysPerStep * 360.0 + 12.0;  //+12.0 causes a rotation (12?
+				RayAngle = (GLfloat)j / (GLfloat)RaysPerStep * 360.0 +90.0;  //+12.0 causes a rotation (12?
 																			  //for the next computations "NewSpeed.x" is the radius. Care! Dont swap the two
 																			  //lines, because the second one changes NewSpeed.x!
 				NewSpeed.z = NewSpeed.x * sin(RayAngle * PI / 180.0);
@@ -353,7 +354,7 @@ void CAirFountain::Initialize(GLint Steps, GLint RaysPerStep, GLint DropsPerRay,
 
 
 				//Calculate how many steps are required, that a drop comes out and falls down again
-				TimeNeeded = NewSpeed.y / DropAccFactor;
+				TimeNeeded = NewSpeed.y / DropAccFactor+(-NewSpeed.y+sqrt(NewSpeed.y*NewSpeed.y+2*DropAccFactor*BIRDPOS))/DropAccFactor;//h=v0t+1/2*at^2
 				FountainDrops[i + j*DropsPerRay + k*DropsPerRay*RaysPerStep].SetConstantSpeed(NewSpeed);
 				FountainDrops[i + j*DropsPerRay + k*DropsPerRay*RaysPerStep].SetAccFactor(DropAccFactor);
 				FountainDrops[i + j*DropsPerRay + k*DropsPerRay*RaysPerStep].SetTime(TimeNeeded * i / DropsPerRay);
@@ -381,7 +382,7 @@ void CAirFountain::Render()
 		0,			//the vertices are tightly packed
 		FountainVertices);
 	glPushMatrix();
-	glTranslatef(Position.x, Position.y, Position.z);
+	glTranslatef(Position.x, Position.y+2.0, Position.z);
 	glDrawArrays(GL_POINTS,
 		0,
 		m_NumDropsComplete);

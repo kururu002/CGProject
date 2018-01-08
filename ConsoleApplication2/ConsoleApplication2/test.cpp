@@ -3,15 +3,16 @@
 #define GLUT_DISABLE_ATEXIT_HACK
 #define PI 3.14
 #define POOL_HEIGHT 0.3
-#define NUM_X_OSCILLATORS		170//NUM OF X OSC
-#define NUM_Z_OSCILLATORS		170
-#define OSCILLATOR_DISTANCE		0.015//DISTANCE BETWEEN OSC
+#define NUM_X_OSCILLATORS		250//NUM OF X OSC
+#define NUM_Z_OSCILLATORS		250
+#define OSCILLATOR_DISTANCE		0.03//DISTANCE BETWEEN OSC
 #define OSCILLATOR_WEIGHT       0.0001
 
 #define MAXX					(NUM_X_OSCILLATORS*OSCILLATOR_DISTANCE)
 #define MAXZ					(NUM_Z_OSCILLATORS*OSCILLATOR_DISTANCE)
 #include <GL/glaux.h>
 #ifndef _GLUTANDSTDINLUDE_
+
 #define _GLUTANDSTDINLUDE_
 #include <stdlib.h>
 #include <GL/GLUT.H>
@@ -384,15 +385,18 @@ void init(void)
 	}
 
 	/** 创建500个粒子 */
+	glPushMatrix();
+	glTranslatef(-NUM_X_OSCILLATORS*OSCILLATOR_DISTANCE/2, 0, -NUM_Z_OSCILLATORS*OSCILLATOR_DISTANCE/2);
 	Pool.Initialize(NUM_X_OSCILLATORS, NUM_Z_OSCILLATORS, OSCILLATOR_DISTANCE, OSCILLATOR_WEIGHT, 0.05, 4.0, 4.0);
 	//init the airfountain: (look at KeyDown() to see more possibilities of initialization)
-	AirFountain.Initialize(3, 8, 35, 76, 90, 0.5, 0.11);
+	AirFountain.Initialize(1, 1, 200, 10, 20, 0.5, 0.11);
 
 
 	//place it in the center of the pool:
 	AirFountain.Position = F3dVector(NUM_X_OSCILLATORS*OSCILLATOR_DISTANCE / 2.0f,
 		POOL_HEIGHT,
 		NUM_Z_OSCILLATORS*OSCILLATOR_DISTANCE / 2.0f);
+	glPopMatrix();
 	Snow.Create(50);
 	Fire.Create(500);
 
@@ -433,12 +437,15 @@ void display(void)
 	//glLoadIdentity();
 	//DrawGround();
 	skybox();
+	glPushMatrix();
+	glTranslatef(-NUM_X_OSCILLATORS*OSCILLATOR_DISTANCE / 2, 0, -NUM_Z_OSCILLATORS*OSCILLATOR_DISTANCE / 2);
 	Drawpool();
+	glPopMatrix();
 	/** 绘制粒子 */
 	sun.DrawSun();
 	glPushMatrix();
 	glRotated(-25.0, 0.0, 1.0, 0.0);
-	pee.update(-0.3f, 1.5, -1.0f);
+	pee.update(-1.45f,1.9f, -0.2f);
 	glPopMatrix();
 	//DrawTemplate();
 	DrawParticle();
