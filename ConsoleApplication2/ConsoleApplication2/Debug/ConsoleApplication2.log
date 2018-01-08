@@ -1,0 +1,17 @@
+﻿  test.cpp
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\particle.h(4): warning C4005: 'PI': macro redefinition
+  d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(4): note: see previous definition of 'PI'
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\pool.h(2): warning C4005: 'PI': macro redefinition
+  d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\particle.h(4): note: see previous definition of 'PI'
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\sunlights.h(28): warning C4804: '<': unsafe use of type 'bool' in operation
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(145): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(146): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(147): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(148): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(272): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\test.cpp(274): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\loadtga.h(82): warning C4715: 'loadTGA': not all control paths return a value
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\sunlights.h(15): warning C4172: returning address of local variable or temporary: color
+d:\user\文件\cg\newtan\consoleapplication2\consoleapplication2\sunlights.h(36): warning C4172: returning address of local variable or temporary: color
+  ConsoleApplication2.vcxproj -> D:\User\文件\CG\newtan\ConsoleApplication2\Debug\ConsoleApplication2.exe
+  ConsoleApplication2.vcxproj -> D:\User\文件\CG\newtan\ConsoleApplication2\Debug\ConsoleApplication2.pdb (Full PDB)
